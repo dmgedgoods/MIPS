@@ -1,0 +1,55 @@
+Here's a text based version of a MIPS pipeline diagram with instructions from an assembly language program. 
+
+ 
+
+lw $t0,0($s0)     | IF | IF | ID | EX | MEM| WB |    |    |    |    |    |    |    |    |    |
+add $t2,$t1,$t0   |    | IF | ID | ID | ID | EX | MEM| WB |    |    |    |    |    |    |    |
+and $t3,$t6,$t4   |    |    | IF | IF | IF | ID | EX | MEM| WB |    |    |    |    |    |    |
+sw $t2,0($t3)     |    |    |    | IF | IF | IF | ID | EX | MEM| WB |    |    |    |    |    |
+and $t4,$zero,$t8 |    |    |    |    | IF | IF | IF | ID | EX | MEM| WB |    |    |    |    |
+lw $t0,0($s0)     |    |    |    |    |    | IF | IF | IF | ID | EX | MEM| WB |    |    |    |
+add $t2,$t1,$t0   |    |    |    |    |    |    | IF | ID | ID | ID | EX | MEM| WB |    |    |
+------------------------------------------------------------------------------------------------- 
+                  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+cpu clock cycles  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+(in nanoseconds) 0.0  0.2  0.4  0.6  0.8  1.0  1.2  1.4  1.6  1.8  2.0  2.2  2.4  2.6  2.8  3.0
+
+ 
+
+Every 0.2 nanoseconds, the CPU clock works with the Control Unit to process an instruction's Fetch Execution Cycle step.
+
+What is shown in the diagram above are the effects of the von Neumann bottleneck and hazards on the pipeline -- some programs have instructions that are arranged so that multiple 0.2 nanoseconds clock cycles are needed to complete some of an instruction's Fetch Execution Cycle steps.  
+
+ 
+
+Given these facts, please provide answers to the following parts of this question. Please make sure each answer is no more than 4 sentences long. Note that if an answer is more than 4 sentences long, it will not be given credit.
+
+ 
+
+a) Which instructions are taking exactly three 0.2 nanosecond clock cycles to complete the IF Fetch Execution Cycle step?  (1 point)
+
+ 
+
+b) Which instructions are taking exactly three 0.2 nanosecond clock cycles to complete the ID Fetch Execution Cycle step?  (1 point)
+
+ 
+
+c) Which instruction takes the shortest time to complete?  (2 points)
+
+ 
+
+d) For the instruction you gave as your answer in c), how long in nanoseconds does that instruction take to complete? (2 points)
+
+ 
+
+e)  What is the maximum number of these pipelined instructions that are in the CPU at the same time?  Remember, the CPU contains the Control Unit, the ALU, and the registers of the computer architecture. (3 points)
+
+ 
+
+f) Which instructions are having their IF Fetch Execution Cycle step affected by the von Neumann bottleneck? (3 points)
+
+ 
+
+g) If the instructions sw $t2,0($t3) and and $t4,$zero,$t8 are rearranged so that and $t4,$zero,$t8 is performed first and then sw$t2,0($t3) is performed next, will the total time to perform all the instructions in the pipeline increase, decrease, or stay the same? State one of the words "increase", "decrease", or the phrase "stay the same" in your answer.  Also state the reasons for why the total time would increase, decrease, or stay the same. (5 points)
+
+ 
